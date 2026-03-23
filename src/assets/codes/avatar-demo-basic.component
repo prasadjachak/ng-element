@@ -1,31 +1,35 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nel-demo-avatar-basic',
-  template: `
+    selector: 'nel-demo-avatar-basic',
+    template: `
     <div nel-row class="demo-avatar demo-basic">
       <div nel-col [nelSpan]="12">
         <div class="sub-title">circle</div>
         <div class="demo-basic--circle">
           <div class="block"><nel-avatar [nelSize]="50" [nelSrc]="circleUrl"></nel-avatar></div>
-          <div class="block" *ngFor="let size of sizeList">
-            <nel-avatar [nelSize]="size" [nelSrc]="circleUrl"></nel-avatar>
-          </div>
+          @for (size of sizeList; track size) {
+            <div class="block">
+              <nel-avatar [nelSize]="size" [nelSrc]="circleUrl"></nel-avatar>
+            </div>
+          }
         </div>
       </div>
       <div nel-col [nelSpan]="12">
         <div class="sub-title">square</div>
         <div class="demo-basic--circle">
           <div class="block"><nel-avatar [nelShape]="'square'" [nelSize]="50" [nelSrc]="squareUrl"></nel-avatar></div>
-          <div class="block" *ngFor="let size of sizeList">
-            <nel-avatar [nelShape]="'square'" [nelSize]="size" [nelSrc]="squareUrl"></nel-avatar>
-          </div>
+          @for (size of sizeList; track size) {
+            <div class="block">
+              <nel-avatar [nelShape]="'square'" [nelSize]="size" [nelSrc]="squareUrl"></nel-avatar>
+            </div>
+          }
         </div>
       </div>
     </div>
-  `,
-  styles: [
-    `
+    `,
+    styles: [
+        `
       .demo-avatar.demo-basic {
         text-align: center;
       }
@@ -54,7 +58,8 @@ import { Component } from '@angular/core';
         flex: 1;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 
 export class NelDemoAvatarBasicComponent {

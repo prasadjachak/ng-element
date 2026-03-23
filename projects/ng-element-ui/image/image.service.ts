@@ -1,4 +1,4 @@
-import { Portal, PortalInjector, ComponentPortal } from '@angular/cdk/portal';
+import { Portal, ComponentPortal } from '@angular/cdk/portal';
 import { Injectable, Injector } from '@angular/core';
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { ImageConfig } from './image-config';
@@ -27,8 +27,13 @@ export class NelImageService {
     return imageRef;
   }
 
-  createInjector(ref: ImageRef, inj: Injector): PortalInjector {
-    const injectorTokens = new WeakMap([[ImageRef, ref]]);
-    return new PortalInjector(inj, injectorTokens);
+  createInjector(ref: ImageRef, inj: Injector): Injector {
+    return Injector.create({
+      providers: [
+        { provide: ImageRef, useValue: ref }
+      ],
+      parent: inj
+    });
   }
+
 }

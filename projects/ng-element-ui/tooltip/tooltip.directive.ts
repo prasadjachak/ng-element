@@ -37,14 +37,14 @@ export class NelTooltipDirective implements OnInit {
     // }
   }
 
-  @HostListener('mouseenter', ['$event.target'])
+  @HostListener('mouseenter', [])
   onMouseenter(): void {
     if (!this.disabled) {
       this.show();
     }
   }
 
-  @HostListener('mouseleave', ['$event.target'])
+  @HostListener('mouseleave', [])
   onMouseleave(): void {
     this.hide();
   }

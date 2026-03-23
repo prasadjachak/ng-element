@@ -41,7 +41,7 @@ export class NelPopconfirmDirective {
     this.renderer.removeChild(this.renderer.parentNode(this.elementRef.nativeElement), componentRef.location.nativeElement);
   }
 
-  @HostListener('click', ['$event.target'])
+  @HostListener('click', [])
   onClick(): void {
     this.show();
   }

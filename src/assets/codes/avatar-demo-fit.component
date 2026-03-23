@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nel-demo-avatar-fit',
-  template: `
+    selector: 'nel-demo-avatar-fit',
+    template: `
     <div class="demo-fit">
-      <div class="block" *ngFor="let fit of fits">
+      @for (fit of fits; track fit) {
+        <div class="block">
           <span class="title">{{ fit }}</span>
           <nel-avatar [nelShape]="'square'" [nelSize]="100" [nelFit]="fit" [nelSrc]="url"></nel-avatar>
-      </div>
+        </div>
+      }
     </div>
-  `,
-  styles: [
-    `
+    `,
+    styles: [
+        `
       .demo-fit {
         display: flex;
         text-align: center;
@@ -31,7 +33,8 @@ import { Component } from '@angular/core';
         color: #8492a6;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 
 export class NelDemoAvatarFitComponent {

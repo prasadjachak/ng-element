@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'nel-demo-card-basic',
-  template: `
+    selector: 'nel-demo-card-basic',
+    template: `
     <nel-card [nelHeader]="headerTpl">
       <ng-template #headerTpl>
         <div class="card-header">
@@ -10,13 +10,15 @@ import { Component } from '@angular/core';
           <button nel-button class="button" [nelType]="'text'">操作按钮</button>
         </div>
       </ng-template>
-      <div *ngFor="let item of list" class="text item">
-        {{'列表内容 ' + item }}
-      </div>
+      @for (item of list; track item) {
+        <div class="text item">
+          {{'列表内容 ' + item }}
+        </div>
+      }
     </nel-card>
-  `,
-  styles: [
-    `
+    `,
+    styles: [
+        `
       .card-header {
         display: flex;
         justify-content: space-between;
@@ -35,7 +37,8 @@ import { Component } from '@angular/core';
         width: 480px;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 
 export class NelDemoCardBasicComponent {
