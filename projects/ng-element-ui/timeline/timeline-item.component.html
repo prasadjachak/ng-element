@@ -7,14 +7,20 @@
   [class.el-timeline-item__node--warning]="nelType == 'warning'"
   [class.el-timeline-item__node--danger]="nelType == 'danger'" [class.el-timeline-item__node--info]="nelType == 'info'"
   [style.backgroundColor]="nelColor">
-  <i *ngIf="nelIcon" class="el-timeline-item__icon el-icon-{{nelIcon}}"></i>
+  @if (nelIcon) {
+    <i class="el-timeline-item__icon el-icon-{{nelIcon}}"></i>
+  }
 </div>
 <div class="el-timeline-item__wrapper">
-  <div *ngIf="!nelHideTimestamp && nelPlacement == 'top'" class="el-timeline-item__timestamp is-top">{{nelTimestamp}}
-  </div>
+  @if (!nelHideTimestamp && nelPlacement == 'top') {
+    <div class="el-timeline-item__timestamp is-top">{{nelTimestamp}}
+    </div>
+  }
   <div class="el-timeline-item__content">
     <ng-content></ng-content>
   </div>
-  <div *ngIf="!nelHideTimestamp && nelPlacement == 'bottom'" class="el-timeline-item__timestamp is-bottom">
+  @if (!nelHideTimestamp && nelPlacement == 'bottom') {
+    <div class="el-timeline-item__timestamp is-bottom">
     {{nelTimestamp}}</div>
+  }
 </div>

@@ -7,7 +7,9 @@
       <ng-container *stringTemplate="nelTitle">{{nelTitle}}</ng-container>
     </div>
   </div>
-  <div class="el-page-header__content" *ngIf="nelContent">
-    <ng-container *stringTemplate="nelContent">{{nelContent}}</ng-container>
-  </div>
+  @if (nelContent) {
+    <div class="el-page-header__content">
+      <ng-container *stringTemplate="nelContent">{{nelContent}}</ng-container>
+    </div>
+  }
 </div>

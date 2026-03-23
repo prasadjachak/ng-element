@@ -4,17 +4,19 @@
   [class.is-error]="finishStatus == 'error' && index < active">
   <div class="el-step__line"><i class="el-step__line-inner"></i></div>
   <div class="el-step__icon" [class.is-text]="!nelIcon" [class.is-icon]="nelIcon">
-    <i *ngIf="nelIcon; else noIcon" class="el-step__icon-inner el-icon-{{nelIcon}}"></i>
-    <ng-template #noIcon>
-      <div *ngIf="index >= active; else iconTpl" class="el-step__icon-inner">
-        <ng-container *ngIf="!simple">
-          {{index + 1}}
-        </ng-container>
-      </div>
-      <ng-template #iconTpl>
+    @if (nelIcon) {
+      <i class="el-step__icon-inner el-icon-{{nelIcon}}"></i>
+    } @else {
+      @if (index >= active) {
+        <div class="el-step__icon-inner">
+          @if (!simple) {
+            {{index + 1}}
+          }
+        </div>
+      } @else {
         <i class="el-step__icon-inner el-icon-check is-status"></i>
-      </ng-template>
-    </ng-template>
+      }
+    }
   </div>
 </div>
 <div class="el-step__main">
@@ -22,17 +24,19 @@
     [class.is-success]="finishStatus == 'success' && index < active"
     [class.is-finish]="finishStatus == 'finish' && index < active"
     [class.is-error]="finishStatus == 'error' && index < active">
-    <ng-container *ngIf="nelTitle">
+    @if (nelTitle) {
       <ng-container *stringTemplate="nelTitle">{{nelTitle}}</ng-container>
-    </ng-container>
+    }
   </div>
   <div class="el-step__description" [class.is-process]="active == index" [class.is-wait]="index > active"
     [class.is-success]="finishStatus == 'success' && index < active"
     [class.is-finish]="finishStatus == 'finish' && index < active"
     [class.is-error]="finishStatus == 'error' && index < active">
-    <ng-container *ngIf="nelDescription">
+    @if (nelDescription) {
       <ng-container *stringTemplate="nelDescription">{{nelDescription}}</ng-container>
-    </ng-container>
+    }
   </div>
-  <div *ngIf="simple" class="el-step__arrow"></div>
+  @if (simple) {
+    <div class="el-step__arrow"></div>
+  }
 </div>

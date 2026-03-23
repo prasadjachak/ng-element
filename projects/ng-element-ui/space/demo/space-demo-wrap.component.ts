@@ -4,15 +4,15 @@ import { Component, OnInit } from '@angular/core';
     selector: 'nel-demo-space-wrap',
     template: `
     <nel-space nelWrap>
-      <ng-container *ngFor="let i of list">
+      @for (i of list; track i) {
         <div *nelSpaceItem>
           <button nel-button [nelType]="'text'">
             文字按钮
           </button>
         </div>
-      </ng-container>
+      }
     </nel-space>
-  `,
+    `,
     standalone: false
 })
 

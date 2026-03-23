@@ -3,14 +3,15 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'nel-demo-tag-close',
     template: `
-    <nel-tag
-      *ngFor="let tag of dynamicTags"
-      nelClosable
-      (nelOnClose)="handleClose(tag)">
-      {{tag}}
-    </nel-tag>
+    @for (tag of dynamicTags; track tag) {
+      <nel-tag
+        nelClosable
+        (nelOnClose)="handleClose(tag)">
+        {{tag}}
+      </nel-tag>
+    }
     <button nel-button class="button-new-tag" [nelSize]="'small'" (click)="addTag()">+ New Tag</button>
-  `,
+    `,
     styles: [
         `
       .el-tag + .el-tag {

@@ -5,10 +5,12 @@ import { Component, OnInit } from '@angular/core';
     template: `
     <nel-scrollbar>
       <div class="flex-content">
-        <p class="item" *ngFor="let item of list">{{ item.value }}</p>
+        @for (item of list; track item) {
+          <p class="item">{{ item.value }}</p>
+        }
       </div>
     </nel-scrollbar>
-  `,
+    `,
     styles: [
         `
       .flex-content {

@@ -5,23 +5,25 @@ import { Component } from '@angular/core';
     template: `
     <div class="tag-group">
       <span class="tag-group__title">Dark</span>
-      <nel-tag
-        *ngFor="let item of items"
-        [nelType]="item.type"
-        [nelEffect]="'dark'">
-        {{ item.label }}
-      </nel-tag>
+      @for (item of items; track item) {
+        <nel-tag
+          [nelType]="item.type"
+          [nelEffect]="'dark'">
+          {{ item.label }}
+        </nel-tag>
+      }
     </div>
     <div class="tag-group">
       <span class="tag-group__title">Plain</span>
-      <nel-tag
-        *ngFor="let item of items"
-        [nelType]="item.type"
-        [nelEffect]="'plain'">
-        {{ item.label }}
-      </nel-tag>
+      @for (item of items; track item) {
+        <nel-tag
+          [nelType]="item.type"
+          [nelEffect]="'plain'">
+          {{ item.label }}
+        </nel-tag>
+      }
     </div>
-  `,
+    `,
     styles: [
         `
       .tag-group {

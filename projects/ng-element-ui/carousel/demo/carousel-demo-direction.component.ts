@@ -4,11 +4,13 @@ import { Component } from '@angular/core';
     selector: 'nel-demo-carousel-direction',
     template: `
     <nel-carousel [nelHeight]="'200px'" [nelDirection]="'vertical'" :autoplay="false">
-      <nel-carousel-item *ngFor="let item of list">
-        <h3 class="medium">{{ item }}</h3>
-      </nel-carousel-item>
+      @for (item of list; track item) {
+        <nel-carousel-item>
+          <h3 class="medium">{{ item }}</h3>
+        </nel-carousel-item>
+      }
     </nel-carousel>
-  `,
+    `,
     styles: [
         `
       :host ::ng-deep .el-carousel__item:nth-child(odd) {

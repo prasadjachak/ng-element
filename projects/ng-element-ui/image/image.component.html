@@ -1,13 +1,20 @@
-<img *ngIf="!loading && !hasLoadError" (click)="preview()" class="el-image__inner" [src]="src"
-  [style.object-fit]="nelFit" [alt]="nelAlt">
-<div *ngIf="loading" class="el-image__placeholder">
-  <ng-container *ngIf="nelPlaceholder">
-    <ng-container *stringTemplate="nelPlaceholder">{{nelPlaceholder}}</ng-container>
-  </ng-container>
-</div>
-<div *ngIf="hasLoadError" class="el-image__error">
-  <ng-container *ngIf="nelError; else errorTpl">
-    <ng-container *stringTemplate="nelError">{{nelError}}</ng-container>
-  </ng-container>
-  <ng-template #errorTpl>加载失败</ng-template>
-</div>
+@if (!loading && !hasLoadError) {
+  <img (click)="preview()" class="el-image__inner" [src]="src"
+    [style.object-fit]="nelFit" [alt]="nelAlt">
+}
+@if (loading) {
+  <div class="el-image__placeholder">
+    @if (nelPlaceholder) {
+      <ng-container *stringTemplate="nelPlaceholder">{{nelPlaceholder}}</ng-container>
+    }
+  </div>
+}
+@if (hasLoadError) {
+  <div class="el-image__error">
+    @if (nelError) {
+      <ng-container *stringTemplate="nelError">{{nelError}}</ng-container>
+    } @else {
+      加载失败
+    }
+  </div>
+}

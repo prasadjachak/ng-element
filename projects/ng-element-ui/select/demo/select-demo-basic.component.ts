@@ -4,9 +4,11 @@ import { Component } from '@angular/core';
     selector: 'nel-demo-select-basic',
     template: `
     <nel-select [ngModel]="option" (ngModelChange)="selected($event)">
-      <nel-option *ngFor="let option of options" [label]="option.label" [value]="option.value"></nel-option>
+      @for (option of options; track option) {
+        <nel-option [label]="option.label" [value]="option.value"></nel-option>
+      }
     </nel-select>
-  `,
+    `,
     standalone: false
 })
 

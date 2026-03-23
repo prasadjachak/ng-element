@@ -6,9 +6,11 @@ import { Component } from '@angular/core';
     <label nel-checkbox [nelIndeterminate]="isIndeterminate" [(ngModel)]="checkAll" (ngModelChange)="handleCheckAllChange($event)">全选</label>
     <div style="margin: 15px 0;"></div>
     <nel-checkbox-group [(ngModel)]="checkedCities" (ngModelChange)="handleCheckedCitiesChange($event)">
-      <label nel-checkbox *ngFor="let city of cities" [nelValue]="city">{{city}}</label>
+      @for (city of cities; track city) {
+        <label nel-checkbox [nelValue]="city">{{city}}</label>
+      }
     </nel-checkbox-group>
-  `,
+    `,
     standalone: false
 })
 

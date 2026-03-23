@@ -6,14 +6,20 @@ import { zoomMotion, zoomTopMotion, zoomBottomMotion } from 'ng-element-ui/core/
     template: `
     <div>
       <button nel-button (click)="show = !show">Click Me</button>
-
+    
       <div style="display: flex; margin-top: 20px; height: 100px;">
-        <div *ngIf="show" class="transition-box" @zoomMotion>zoomMotion</div>
-        <div *ngIf="show" class="transition-box" @zoomTopMotion>zoomTopMotion</div>
-        <div *ngIf="show" class="transition-box" @zoomBottomMotion>zoomBottomMotion</div>
+        @if (show) {
+          <div class="transition-box" @zoomMotion>zoomMotion</div>
+        }
+        @if (show) {
+          <div class="transition-box" @zoomTopMotion>zoomTopMotion</div>
+        }
+        @if (show) {
+          <div class="transition-box" @zoomBottomMotion>zoomBottomMotion</div>
+        }
       </div>
     </div>
-  `,
+    `,
     styles: [
         `
       .transition-box {

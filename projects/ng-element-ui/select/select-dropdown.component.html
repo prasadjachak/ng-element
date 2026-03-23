@@ -6,10 +6,12 @@
       <div class="el-scrollbar">
         <div class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default">
           <ul class="el-scrollbar__view el-select-dropdown__list">
-            <li *ngFor="let option of options" (click)="selectOption(option)" class="el-select-dropdown__item"
-              [class.selected]="option.selected">
-              <span>{{option.label}}</span>
-            </li>
+            @for (option of options; track option) {
+              <li (click)="selectOption(option)" class="el-select-dropdown__item"
+                [class.selected]="option.selected">
+                <span>{{option.label}}</span>
+              </li>
+            }
           </ul>
         </div>
         <div class="el-scrollbar__bar is-horizontal" style="display: none;">

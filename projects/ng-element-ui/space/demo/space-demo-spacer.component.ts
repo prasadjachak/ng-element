@@ -5,30 +5,30 @@ import { Component } from '@angular/core';
     template: `
     <div>
       <nel-space [nelSize]="size" [nelSpacer]="'|'">
-        <ng-container *ngFor="let i of list">
+        @for (i of list; track i) {
           <div *nelSpaceItem>
             <button nel-button>
               button {{ i }}
             </button>
           </div>
-        </ng-container>
+        }
       </nel-space>
     </div>
     <div style="margin-top: 10px;">
       <nel-space [nelSize]="size" [nelSpacer]="spacer">
-        <ng-container *ngFor="let i of list">
+        @for (i of list; track i) {
           <div *nelSpaceItem>
             <button nel-button>
               button {{ i }}
             </button>
           </div>
-        </ng-container>
+        }
       </nel-space>
       <ng-template #spacer>
         <nel-divider [nelDirection]="'vertical'"></nel-divider>
       </ng-template>
     </div>
-  `,
+    `,
     standalone: false
 })
 

@@ -2,28 +2,30 @@
   [class.el-progress--dashboard]="nelType == 'dashboard'" [class.is-success]="nelStatus == 'success'"
   [class.is-exception]="nelStatus == 'exception'" [class.is-warning]="nelStatus == 'warning'" role="progressbar">
   <!-- bar -->
-  <ng-container *ngIf="nelType == 'line'; else circleDashboard">
+  @if (nelType == 'line') {
     <div class="el-progress-bar">
       <div class="el-progress-bar__outer" [style.height]="nelStrokeWidth + 'px'">
         <div class="el-progress-bar__inner" [class.el-progress-bar__inner--indeterminate]="nelIndeterminate"
           [style.width]="nelPercentage + '%'" [style.animation-duration]="nelDuration + 's'"
           [style.background-color]="getCurrentColor()">
-          <div *ngIf="nelTextInside" class="el-progress-bar__innerText">
-            <ng-template *ngTemplateOutlet="formatTemplate"></ng-template>
-          </div>
+          @if (nelTextInside) {
+            <div class="el-progress-bar__innerText">
+              <ng-template *ngTemplateOutlet="formatTemplate"></ng-template>
+            </div>
+          }
         </div>
       </div>
     </div>
-    <div *ngIf="!nelTextInside" class="el-progress__text" style="font-size: 14.4px;">
-      <ng-template *ngTemplateOutlet="textTpl"></ng-template>
-    </div>
-  </ng-container>
-  <!-- circle or dashboard -->
-  <ng-template #circleDashboard>
+    @if (!nelTextInside) {
+      <div class="el-progress__text" style="font-size: 14.4px;">
+        <ng-template *ngTemplateOutlet="textTpl"></ng-template>
+      </div>
+    }
+  } @else {
     <div class="el-progress-circle" [style.height]="nelWidth + 'px'" [style.width]="nelWidth + 'px'">
       <svg viewBox="0 0 100 100">
         <path class="el-progress-circle__track" [attr.d]="trackPath" stroke="#e5e9f2"
-          [attr.stroke-width]="relativeStrokeWidth" fill="none" [style]="trailPathStyle"></path>
+        [attr.stroke-width]="relativeStrokeWidth" fill="none" [style]="trailPathStyle"></path>
         <path class="el-progress-circle__path" [attr.d]="trackPath" [attr.stroke]="stroke" fill="none"
           [attr.stroke-linecap]="nelStrokeLinecap" [attr.stroke-width]="nelPercentage ? relativeStrokeWidth : 0"
           [style]="circlePathStyle">
@@ -33,16 +35,28 @@
     <div class="el-progress__text" style="font-size: 16px;">
       <ng-template *ngTemplateOutlet="textTpl"></ng-template>
     </div>
-  </ng-template>
+  }
+  <!-- circle or dashboard -->
   <ng-template #textTpl>
-    <ng-container
-      *ngIf="(nelStatus === 'success' || nelStatus === 'exception' || nelStatus === 'warning') && !nelFormat; else formatTemplate">
-      <ng-container [ngSwitch]="nelStatus">
-        <i *ngSwitchCase="'success'" class="el-icon-{{nelType == 'line' ? 'circle-check' : 'check'}}"></i>
-        <i *ngSwitchCase="'warning'" class="el-icon-warning"></i>
-        <i *ngSwitchCase="'exception'" class="el-icon-{{nelType == 'line' ? 'circle-close' : 'close'}}"></i>
-      </ng-container>
-    </ng-container>
+    @if ((nelStatus === 'success' || nelStatus === 'exception' || nelStatus === 'warning') && !nelFormat) {
+      @switch (nelStatus) {
+        @case ('success') {
+          <i class="el-icon-{{nelType == 'line' ? 'circle-check' : 'check'}}"></i>
+        }
+        @case ('warning') {
+          <i class="el-icon-warning"></i>
+        }
+        @case ('exception') {
+          <i class="el-icon-{{nelType == 'line' ? 'circle-close' : 'close'}}"></i>
+        }
+      }
+    } @else {
+      <span>
+        <ng-container *stringTemplate="formatter; context: { $implicit: nelPercentage }">
+          {{ formatterText(nelPercentage) }}
+        </ng-container>
+      </span>
+    }
   </ng-template>
   <ng-template #formatTemplate>
     <span>

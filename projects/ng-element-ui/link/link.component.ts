@@ -5,11 +5,13 @@ import { InputBoolean } from 'ng-element-ui/core/utils';
 @Component({
     selector: 'a[nel-link]',
     template: `
-    <i *ngIf="nelIcon" class="el-icon-{{nelIcon}}"></i>
+    @if (nelIcon) {
+      <i class="el-icon-{{nelIcon}}"></i>
+    }
     <span class="el-link--inner">
       <ng-content></ng-content>
     </span>
-  `,
+    `,
     host: {
         '[class.el-link]': `true`,
         '[class.el-link--default]': `nelType == ''`,

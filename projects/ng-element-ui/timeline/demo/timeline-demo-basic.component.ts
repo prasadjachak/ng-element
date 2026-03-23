@@ -5,14 +5,15 @@ import { Component } from '@angular/core';
     template: `
     <div class="block">
       <nel-timeline>
-        <nel-timeline-item
-          *ngFor="let activity of activities"
-          [nelTimestamp]="activity.timestamp">
-          {{activity.content}}
-        </nel-timeline-item>
+        @for (activity of activities; track activity) {
+          <nel-timeline-item
+            [nelTimestamp]="activity.timestamp">
+            {{activity.content}}
+          </nel-timeline-item>
+        }
       </nel-timeline>
     </div>
-  `,
+    `,
     standalone: false
 })
 

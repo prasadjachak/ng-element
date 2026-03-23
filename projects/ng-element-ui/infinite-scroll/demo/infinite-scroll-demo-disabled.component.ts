@@ -9,12 +9,18 @@ import { Component, OnInit } from '@angular/core';
         nel-infinite-scroll
         [nelDisabled]="disabled()"
         (nelOnReachBottom)="load()" style="color: blue;">
-        <li *ngFor="let item of list" class="list-item">{{item}}</li>
+        @for (item of list; track item) {
+          <li class="list-item">{{item}}</li>
+        }
       </ul>
-      <p *ngIf="loading">加载中...</p>
-      <p *ngIf="noMore()">没有更多了</p>
+      @if (loading) {
+        <p>加载中...</p>
+      }
+      @if (noMore()) {
+        <p>没有更多了</p>
+      }
     </div>
-  `,
+    `,
     styles: [
         `
       .infinite-list-wrapper {

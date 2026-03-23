@@ -3,10 +3,14 @@
     <div class="el-slider__bar" style="left: 0%;" [style.width]="progress"></div>
     <div class="el-slider__button-wrapper" role="slider" [style.left]="progress">
       <div nel-tooltip [nelContent]="formatVal()" [nelPlacement]="placement" [nelDisabled]="!showTooltip"
-        (mousedown)="triggerDown()" class="el-slider__button el-tooltip__trigger el-tooltip__trigger"></div>
+      (mousedown)="triggerDown()" class="el-slider__button el-tooltip__trigger el-tooltip__trigger"></div>
     </div>
-    <div *ngIf="showStops">
-      <div *ngFor="let stop of stops" class="el-slider__stop" [style.left]="stop"></div>
-    </div>
+    @if (showStops) {
+      <div>
+        @for (stop of stops; track stop) {
+          <div class="el-slider__stop" [style.left]="stop"></div>
+        }
+      </div>
+    }
   </div>
 </div>

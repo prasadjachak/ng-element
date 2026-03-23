@@ -4,15 +4,17 @@ import { Component } from '@angular/core';
     selector: 'nel-demo-image-basic',
     template: `
     <div class="demo-image">
-      <div class="block" *ngFor="let fit of fits">
-        <span class="demonstration">{{ fit }}</span>
-        <nel-image
-          style="width: 100px; height: 100px"
-          [nelSrc]="url"
+      @for (fit of fits; track fit) {
+        <div class="block">
+          <span class="demonstration">{{ fit }}</span>
+          <nel-image
+            style="width: 100px; height: 100px"
+            [nelSrc]="url"
           [nelFit]="fit"></nel-image>
-      </div>
+        </div>
+      }
     </div>
-  `,
+    `,
     styles: [
         `
       .demo-image .block {

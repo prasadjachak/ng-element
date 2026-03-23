@@ -4,9 +4,11 @@ import { Component } from '@angular/core';
     selector: 'nel-demo-infinite-scroll-basic',
     template: `
     <ul class="infinite-list" nel-infinite-scroll (nelOnReachBottom)="add()" style="overflow:auto">
-      <li *ngFor="let item of list" class="infinite-list-item">{{ item }}</li>
+      @for (item of list; track item) {
+        <li class="infinite-list-item">{{ item }}</li>
+      }
     </ul>
-  `,
+    `,
     styles: [
         `
       .infinite-list {

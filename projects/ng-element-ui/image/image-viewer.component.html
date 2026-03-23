@@ -14,18 +14,24 @@
       <i class="el-icon-zoom-out" (click)="scaleImage(-0.2)"></i>
       <i class="el-icon-zoom-in" (click)="scaleImage(0.2)"></i>
       <i class="el-image-viewer__actions__divider"></i>
-      <i *ngIf="!isOriginal" class="el-icon-full-screen" (click)="changeType()"></i>
-      <i *ngIf="isOriginal" class="el-icon-c-scale-to-original" (click)="changeType()"></i>
+      @if (!isOriginal) {
+        <i class="el-icon-full-screen" (click)="changeType()"></i>
+      }
+      @if (isOriginal) {
+        <i class="el-icon-c-scale-to-original" (click)="changeType()"></i>
+      }
       <i class="el-image-viewer__actions__divider"></i>
       <i class="el-icon-refresh-left" (click)="rotateImage(-1)"></i>
       <i class="el-icon-refresh-right" (click)="rotateImage(1)"></i>
     </div>
   </div>
   <div cdkDrag (cdkDragStarted)="dragStarted()" class="el-image-viewer__canvas">
-    <img cdkDragHandle #imgEle *ngFor="let url of nelUrlList; let index=index" [src]="url"
-      [style.display]="index != nelInitialIndex ? 'none' : ''"
-      [ngStyle]="{'max-height': isOriginal ? '' : '100%', 'max-width': isOriginal ? '' : '100%'}"
-      class="el-image-viewer__img">
+    @for (url of nelUrlList; track url; let index = $index) {
+      <img cdkDragHandle #imgEle [src]="url"
+        [style.display]="index != nelInitialIndex ? 'none' : ''"
+        [ngStyle]="{'max-height': isOriginal ? '' : '100%', 'max-width': isOriginal ? '' : '100%'}"
+        class="el-image-viewer__img">
+    }
     <div>
     </div>
   </div>

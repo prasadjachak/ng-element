@@ -4,11 +4,13 @@ import { Component, OnInit } from '@angular/core';
     selector: 'nel-demo-scrollbar-basic',
     template: `
     <nel-scrollbar [nelHeight]="'400px'">
-      <p class="item" *ngFor="let item of list" v-for="item in 20">
-        {{ item.value }}
-      </p>
+      @for (item of list; track item) {
+        <p class="item" v-for="item in 20">
+          {{ item.value }}
+        </p>
+      }
     </nel-scrollbar>
-  `,
+    `,
     styles: [
         `
     :host ::ng-deep .item {

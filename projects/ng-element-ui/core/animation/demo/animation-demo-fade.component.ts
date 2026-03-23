@@ -6,12 +6,14 @@ import { fadeMotion } from 'ng-element-ui/core/animation';
     template: `
     <div>
       <button nel-button (click)="show = !show">Click Me</button>
-
+    
       <div style="display: flex; margin-top: 20px; height: 100px;">
-        <div *ngIf="show" class="transition-box" @fadeMotion>fadeMotion</div>
+        @if (show) {
+          <div class="transition-box" @fadeMotion>fadeMotion</div>
+        }
       </div>
     </div>
-  `,
+    `,
     styles: [
         `
       .transition-box {

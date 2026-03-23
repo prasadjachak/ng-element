@@ -1,18 +1,25 @@
-<div *ngIf="!hide" class="el-alert el-alert--{{nelType}} is-{{nelEffect}} {{nelCenter ? 'is-center' : ''}}"
-  role="alert">
-  <i *ngIf="nelShowIcon" class="el-alert__icon {{nelDescription ? 'is-big' : ''}} el-icon-{{nelType}}"></i>
-  <div class="el-alert__content">
-    <span class="el-alert__title {{nelDescription ? 'is-bold' : ''}}">
-      <ng-container *stringTemplate="nelTitle">{{nelTitle}}</ng-container>
-    </span>
-    <p *ngIf="nelDescription" class="el-alert__description">
-      <ng-container *stringTemplate="nelDescription">{{nelDescription}}</ng-container>
-    </p>
-    <ng-container *ngIf="nelClosable">
-      <i *ngIf="!nelCloseText; else closeTextTpl" class="el-alert__closebtn el-icon-close" (click)="close()"></i>
-      <ng-template #closeTextTpl>
-        <i class="el-alert__closebtn is-customed" (click)="close()">知道了</i>
-      </ng-template>
-    </ng-container>
+@if (!hide) {
+  <div class="el-alert el-alert--{{nelType}} is-{{nelEffect}} {{nelCenter ? 'is-center' : ''}}"
+    role="alert">
+    @if (nelShowIcon) {
+      <i class="el-alert__icon {{nelDescription ? 'is-big' : ''}} el-icon-{{nelType}}"></i>
+    }
+    <div class="el-alert__content">
+      <span class="el-alert__title {{nelDescription ? 'is-bold' : ''}}">
+        <ng-container *stringTemplate="nelTitle">{{nelTitle}}</ng-container>
+      </span>
+      @if (nelDescription) {
+        <p class="el-alert__description">
+          <ng-container *stringTemplate="nelDescription">{{nelDescription}}</ng-container>
+        </p>
+      }
+      @if (nelClosable) {
+        @if (!nelCloseText) {
+          <i class="el-alert__closebtn el-icon-close" (click)="close()"></i>
+        } @else {
+          <i class="el-alert__closebtn is-customed" (click)="close()">知道了</i>
+        }
+      }
+    </div>
   </div>
-</div>
+}

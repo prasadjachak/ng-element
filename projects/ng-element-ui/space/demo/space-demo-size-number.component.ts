@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
       <button (click)="increase()" nel-button>递增</button>
     </div>
     <nel-space nelWrap [nelSize]="size">
-      <ng-container *ngFor="let i of list">
+      @for (i of list; track i) {
         <nel-card *nelSpaceItem class="box-card" style="width: 250px" [nelHeader]="header">
           <ng-template #header>
             <div class="card-header">
@@ -17,13 +17,15 @@ import { Component } from '@angular/core';
               <button nel-button class="button" [nelType]="'text'">Operation button</button>
             </div>
           </ng-template>
-          <div *ngFor="let o of list" class="text item">
-            {{ 'List item ' + o }}
-          </div>
+          @for (o of list; track o) {
+            <div class="text item">
+              {{ 'List item ' + o }}
+            </div>
+          }
         </nel-card>
-      </ng-container>
+      }
     </nel-space>
-  `,
+    `,
     styles: [
         `
       .card-header {

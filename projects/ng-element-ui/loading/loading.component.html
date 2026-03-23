@@ -1,13 +1,18 @@
 <ng-content></ng-content>
-<div *ngIf="nelLoading" class="el-loading-mask" [class.is-fullscreen]="nelFullscreen" [style.background]="nelBackground"
-  @loadingMotion>
-  <div class="el-loading-spinner">
-    <i *ngIf="nelSpinner; else spinnerTpl" class="el-icon-{{nelSpinner}}"></i>
-    <ng-template #spinnerTpl>
-      <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none"></circle>
-      </svg>
-    </ng-template>
-    <p *ngIf="nelText" class="el-loading-text">{{nelText}}</p>
+@if (nelLoading) {
+  <div class="el-loading-mask" [class.is-fullscreen]="nelFullscreen" [style.background]="nelBackground"
+    @loadingMotion>
+    <div class="el-loading-spinner">
+      @if (nelSpinner) {
+        <i class="el-icon-{{nelSpinner}}"></i>
+      } @else {
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none"></circle>
+        </svg>
+      }
+      @if (nelText) {
+        <p class="el-loading-text">{{nelText}}</p>
+      }
+    </div>
   </div>
-</div>
+}

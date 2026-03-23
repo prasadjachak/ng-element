@@ -3,7 +3,9 @@
   <div class="el-popover el-popper is-light">
     <div class="el-popconfirm">
       <p class="el-popconfirm__main">
-        <i *ngIf="!hideIcon" class="el-popconfirm__icon el-icon-{{icon}}" [style.color]="iconColor"></i>
+        @if (!hideIcon) {
+          <i class="el-popconfirm__icon el-icon-{{icon}}" [style.color]="iconColor"></i>
+        }
         {{title}}
       </p>
       <div class="el-popconfirm__action">
@@ -16,6 +18,6 @@
       </div>
     </div>
     <div class="el-popper__arrow" [style.left]="arrowLeft" [style.right]="arrowRight" [style.top]="arrowTop"
-      [style.bottom]="arrowBottom" [style.transform]="transform"></div>
+    [style.bottom]="arrowBottom" [style.transform]="transform"></div>
   </div>
 </ng-template>

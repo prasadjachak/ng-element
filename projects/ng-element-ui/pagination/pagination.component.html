@@ -5,20 +5,26 @@
     </i>
   </button>
   <ul class="el-pager">
-    <ng-container *ngFor="let pageIndex of pageIndexList">
-      <ng-container [ngSwitch]="pageIndex.type">
-        <li *ngSwitchCase="'number'" class="number" [class.active]="pageIndex.value === currentPage"
-          (click)="selectPage(pageIndex.value)">
-          {{pageIndex.value}}
-        </li>
-        <li *ngSwitchCase="'more-prev'" class="more btn-quickprev el-icon" (click)="prevMore()">
-          <i class="el-icon-more"></i>
-        </li>
-        <li *ngSwitchCase="'more-next'" class="more btn-quicknext el-icon" (click)="nextMore()">
-          <i class="el-icon-more"></i>
-        </li>
-      </ng-container>
-    </ng-container>
+    @for (pageIndex of pageIndexList; track pageIndex) {
+      @switch (pageIndex.type) {
+        @case ('number') {
+          <li class="number" [class.active]="pageIndex.value === currentPage"
+            (click)="selectPage(pageIndex.value)">
+            {{pageIndex.value}}
+          </li>
+        }
+        @case ('more-prev') {
+          <li class="more btn-quickprev el-icon" (click)="prevMore()">
+            <i class="el-icon-more"></i>
+          </li>
+        }
+        @case ('more-next') {
+          <li class="more btn-quicknext el-icon" (click)="nextMore()">
+            <i class="el-icon-more"></i>
+          </li>
+        }
+      }
+    }
   </ul>
   <button type="button" class="btn-next is-last" [disabled]="currentPage === pageCount ? true : null"
     (click)="nextPage()">

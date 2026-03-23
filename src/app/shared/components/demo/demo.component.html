@@ -1,22 +1,26 @@
 <div class="demo-block demo-box demo-zh-CN" [class]="classes" [class.hover]="hovering" (mouseenter)="hovering = true"
   (mouseleave)="hovering = false">
-  <div class="source" *ngIf="codeUrl">
-    <ng-content select="[demo]"></ng-content>
-  </div>
-  <div class="meta" [style.height]="isExpanded ? 'inherit' : '0'">
-    <div class="description" *ngIf="notes">
-      <ng-container>
-        <div [innerHTML]="safeNotes"></div>
-      </ng-container>
+  @if (codeUrl) {
+    <div class="source">
+      <ng-content select="[demo]"></ng-content>
     </div>
+  }
+  <div class="meta" [style.height]="isExpanded ? 'inherit' : '0'">
+    @if (notes) {
+      <div class="description">
+        <ng-container>
+          <div [innerHTML]="safeNotes"></div>
+        </ng-container>
+      </div>
+    }
 
-    <ng-container *ngIf="codeUrl">
+    @if (codeUrl) {
       <div class="highlight language-angular">
         <pre>
           <code class="language-typescript hljs" [innerHTML]="code | highlightAuto"></code>
         </pre>
       </div>
-    </ng-container>
+    }
   </div>
 
   <div class="demo-block-control is-fixed" (click)="showCode()">
@@ -30,8 +34,8 @@
         <span>复制代码片段</span>
       </button>
       <!-- <button class="el-button el-button--text el-button--small control-button run-online-button" type="button">
-        <span>在线运行</span>
-      </button> -->
-    </div>
+      <span>在线运行</span>
+    </button> -->
   </div>
+</div>
 </div>

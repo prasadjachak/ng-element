@@ -4,17 +4,18 @@ import { Component } from '@angular/core';
     selector: 'nel-demo-timeline-node',
     template: `
     <nel-timeline>
-      <nel-timeline-item
-        *ngFor="let activity of activities"
-        [nelIcon]="activity.icon"
-        [nelType]="activity.type"
-        [nelColor]="activity.color"
-        [nelSize]="activity.size"
-        [nelTimestamp]="activity.timestamp">
-        {{activity.content}}
-      </nel-timeline-item>
+      @for (activity of activities; track activity) {
+        <nel-timeline-item
+          [nelIcon]="activity.icon"
+          [nelType]="activity.type"
+          [nelColor]="activity.color"
+          [nelSize]="activity.size"
+          [nelTimestamp]="activity.timestamp">
+          {{activity.content}}
+        </nel-timeline-item>
+      }
     </nel-timeline>
-  `,
+    `,
     standalone: false
 })
 

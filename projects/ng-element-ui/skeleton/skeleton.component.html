@@ -1,11 +1,13 @@
-<ng-content *ngIf="!loading; else loadingTpl"></ng-content>
-<ng-template #loadingTpl>
-  <ng-container *ngIf="nelTemplate; else defaultTpl">
+@if (!loading) {
+  <ng-content></ng-content>
+} @else {
+  @if (nelTemplate) {
     <ng-container *stringTemplate="nelTemplate">{{nelTemplate}}</ng-container>
-  </ng-container>
-  <ng-template #defaultTpl>
-    <div *ngFor="let row of rowList; let first=first; let last=last;" class="el-skeleton__item el-skeleton__p"
-      [class.is-first]="first" [class.is-last]="last" [class.el-skeleton__paragraph]="!first">
-    </div>
-  </ng-template>
-</ng-template>
+  } @else {
+    @for (row of rowList; track row; let first = $first; let last = $last) {
+      <div class="el-skeleton__item el-skeleton__p"
+        [class.is-first]="first" [class.is-last]="last" [class.el-skeleton__paragraph]="!first">
+      </div>
+    }
+  }
+}

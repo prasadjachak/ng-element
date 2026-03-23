@@ -3,7 +3,9 @@
     (@messageBoxMotion.done)="onAnimationDone($event)" (click)="$event.stopPropagation()">
     <div class="el-message-box__header">
       <div class="el-message-box__title">
-        <div *ngIf="center && type" class="el-message-box__status el-icon-{{type}}"></div>
+        @if (center && type) {
+          <div class="el-message-box__status el-icon-{{type}}"></div>
+        }
         <span>
           <ng-container *stringTemplate="title">{{title}}</ng-container>
         </span>
@@ -14,7 +16,9 @@
     </div>
     <div class="el-message-box__content">
       <div class="el-message-box__container">
-        <div *ngIf="!center && type" class="el-message-box__status el-icon-{{type}}"></div>
+        @if (!center && type) {
+          <div class="el-message-box__status el-icon-{{type}}"></div>
+        }
         <div class="el-message-box__message">
           <p>
             <ng-container *stringTemplate="content">{{content}}</ng-container>
@@ -29,10 +33,12 @@
       </div>
     </div>
     <div class="el-message-box__btns">
-      <button *ngIf="boxType != 'alert'" (click)="handleCancel('cancel')"
-        class="el-button el-button--default el-button--small" type="button">
-        <span>{{cancelButtonText}}</span>
-      </button>
+      @if (boxType != 'alert') {
+        <button (click)="handleCancel('cancel')"
+          class="el-button el-button--default el-button--small" type="button">
+          <span>{{cancelButtonText}}</span>
+        </button>
+      }
       <button (click)="handleConfirm()" class="el-button el-button--default el-button--small el-button--primary"
         type="button">
         <span>{{confirmButtonText}}</span>

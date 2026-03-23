@@ -3,13 +3,14 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'nel-demo-tag-closable',
     template: `
-    <nel-tag
-      *ngFor="let tag of tags"
-      nelClosable
-      [nelType]="tag.type">
-      {{tag.name}}
-    </nel-tag>
-  `,
+    @for (tag of tags; track tag) {
+      <nel-tag
+        nelClosable
+        [nelType]="tag.type">
+        {{tag.name}}
+      </nel-tag>
+    }
+    `,
     styles: [
         `
       .el-tag+.el-tag {

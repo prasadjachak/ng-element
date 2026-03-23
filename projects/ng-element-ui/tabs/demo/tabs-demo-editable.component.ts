@@ -4,14 +4,15 @@ import { Component } from '@angular/core';
     selector: 'nel-demo-tabs-editable',
     template: `
     <nel-tabs [(nelSelectedIndex)]="selectedIndex" [nelType]="'card'" nelEditable (nelOnEdit)="handleTabsEdit($event)">
-      <nel-tab-pane
-        *ngFor="let item of editableTabs"
-        [nelLabel]="item.title"
-      >
-        {{item.content}}
-      </nel-tab-pane>
+      @for (item of editableTabs; track item) {
+        <nel-tab-pane
+          [nelLabel]="item.title"
+          >
+          {{item.content}}
+        </nel-tab-pane>
+      }
     </nel-tabs>
-  `,
+    `,
     standalone: false
 })
 

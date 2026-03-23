@@ -4,9 +4,11 @@ import { Component } from '@angular/core';
     selector: 'nel-demo-image-lazy',
     template: `
     <div class="demo-image__lazy">
-      <nel-image *ngFor="let url of urls" [nelSrc]="url" nelLazy></nel-image>
+      @for (url of urls; track url) {
+        <nel-image [nelSrc]="url" nelLazy></nel-image>
+      }
     </div>
-  `,
+    `,
     styles: [
         `
       .demo-image__lazy {

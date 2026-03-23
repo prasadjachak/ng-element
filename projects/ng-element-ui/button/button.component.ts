@@ -5,10 +5,14 @@ import { InputBoolean } from 'ng-element-ui/core/utils';
 @Component({
     selector: 'button[nel-button]',
     template: `
-    <i *ngIf="nelIcon" class="el-icon-{{nelIcon}}"></i>
-    <i *ngIf="nelLoading" class="el-icon-loading"></i>
+    @if (nelIcon) {
+      <i class="el-icon-{{nelIcon}}"></i>
+    }
+    @if (nelLoading) {
+      <i class="el-icon-loading"></i>
+    }
     <ng-content></ng-content>
-  `,
+    `,
     host: {
         '[class.el-button]': `true`,
         '[class.el-button--primary]': `nelType === 'primary'`,

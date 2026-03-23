@@ -10,11 +10,13 @@ import { Component } from '@angular/core';
           <button nel-button class="button" [nelType]="'text'">操作按钮</button>
         </div>
       </ng-template>
-      <div *ngFor="let item of list" class="text item">
-        {{'列表内容 ' + item }}
-      </div>
+      @for (item of list; track item) {
+        <div class="text item">
+          {{'列表内容 ' + item }}
+        </div>
+      }
     </nel-card>
-  `,
+    `,
     styles: [
         `
       .card-header {

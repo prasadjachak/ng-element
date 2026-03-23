@@ -4,12 +4,14 @@ import { Component } from '@angular/core';
     selector: 'nel-demo-avatar-fit',
     template: `
     <div class="demo-fit">
-      <div class="block" *ngFor="let fit of fits">
+      @for (fit of fits; track fit) {
+        <div class="block">
           <span class="title">{{ fit }}</span>
           <nel-avatar [nelShape]="'square'" [nelSize]="100" [nelFit]="fit" [nelSrc]="url"></nel-avatar>
-      </div>
+        </div>
+      }
     </div>
-  `,
+    `,
     styles: [
         `
       .demo-fit {
