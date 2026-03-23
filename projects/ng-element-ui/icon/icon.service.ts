@@ -1,6 +1,6 @@
-import { Inject, Injectable, Optional } from "@angular/core";
+import { Inject, Injectable, Optional, DOCUMENT } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { DOCUMENT } from "@angular/common";
+
 import { Observable } from "rxjs";
 
 @Injectable({

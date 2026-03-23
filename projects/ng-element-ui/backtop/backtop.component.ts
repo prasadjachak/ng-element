@@ -1,8 +1,9 @@
 import {
   Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges, Inject, TemplateRef, Output, EventEmitter,
-  ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit
+  ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit,
+  DOCUMENT
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+
 import { fromEvent, Subscription } from 'rxjs';
 import { fadeMotion } from 'ng-element-ui/core/animation';
 

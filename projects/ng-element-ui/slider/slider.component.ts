@@ -1,5 +1,5 @@
-import { Component, Input, AfterViewInit, ViewChild, ElementRef, Optional, Inject, OnDestroy, ChangeDetectionStrategy, forwardRef, ChangeDetectorRef } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Input, AfterViewInit, ViewChild, ElementRef, Optional, Inject, OnDestroy, ChangeDetectionStrategy, forwardRef, ChangeDetectorRef, DOCUMENT } from '@angular/core';
+
 import { fromEvent, Subscription } from 'rxjs';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
